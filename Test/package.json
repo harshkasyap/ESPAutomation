@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "nexmo": "^2.4.1"
+  }
+}
