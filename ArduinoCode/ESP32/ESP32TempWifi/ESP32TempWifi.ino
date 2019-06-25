@@ -1,27 +1,30 @@
 #include "WiFi.h"
 #include "HTTPClient.h"
-#include <Adafruit_Sensor.h>
-#include <DHT.h>
+#include <DHTesp.h>
+
+//Install DHT sensor library for ESPx by beegee library
 
 /*Put your SSID & Password*/
-const char* ssid = "kasyah";    // Enter SSID here
-const char* password = "12345678";  //Enter Password here
+const char* ssid = "CSE-WiFi";    // Enter SSID here
+const char* password = "cse@dept";  //Enter Password here
 
-const char* server = "192.168.43.218";
+const char* server = "172.16.28.134";
 
 WiFiClient client;
 
 /* Set GET link with channel ID */
-const char* _getLink = "http://192.168.43.218:5000/submitData";
+const char* _getLink = "http://172.16.28.134:5000/submitData";
 
-#define DHTPIN 27     // Digital pin connected to the DHT sensor
+#define DHTPIN 15     // Digital pin connected to the DHT sensor
 
 // Uncomment the type of sensor in use:
 #define DHTTYPE    DHT11     // DHT 11
 //#define DHTTYPE    DHT22     // DHT 22 (AM2302)
 //#define DHTTYPE    DHT21     // DHT 21 (AM2301)
 
-DHT dht(DHTPIN, DHTTYPE);
+DHTesp dht;
+
+//DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   Serial.begin(115200);
@@ -41,12 +44,14 @@ void setup() {
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println(WiFi.localIP());
+
+  dht.setup(DHTPIN, DHTesp::DHT11);
 }
 
 String readDHTTemperature() {
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
   // Read temperature as Celsius (the default)
-  float t = dht.readTemperature();
+  float t = dht.getTemperature();
   // Read temperature as Fahrenheit (isFahrenheit = true)
   //float t = dht.readTemperature(true);
   // Check if any reads failed and exit early (to try again).
@@ -86,4 +91,5 @@ void loop() {
   client.stop();
   Serial.println("Waiting…");
   delay(10000);
+  delay(dht.getMinimumSamplingPeriod());
 }
