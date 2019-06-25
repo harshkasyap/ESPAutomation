@@ -7,8 +7,7 @@ window.onload = function () {
 
 var dataResult;
 
-// Replace with own ip address, but will update the code to remove this dependency
-let url="http://ip_address:5000/data";
+let url="http://"+ location.hostname +":5000/data";
 fetch(url).then(response => response.json())
 .then( (result) => {
     dataResult = result;
