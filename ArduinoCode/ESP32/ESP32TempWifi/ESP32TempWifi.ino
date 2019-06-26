@@ -26,7 +26,7 @@ DHTesp dht;
 
 //DHT dht(DHTPIN, DHTTYPE);
 
-void setup() {
+void setupWiFi() {
   Serial.begin(115200);
   delay(1000);
 
@@ -65,10 +65,17 @@ String readDHTTemperature() {
   }
 }
 
+void setup() {
+  setupWiFi();
+}
+
 void loop() {
+  Serial.println("In Loop: Started");
   WiFi.mode(WIFI_STA);
+  Serial.println("In Loop: Here");
   if (client.connect(server,5000))     // "184.106.153.149" or api.thingspeak.com
   {
+    client.connect(server,5000);
     Serial.println("Connected");  
     String data = "temp_sensor=" + String(readDHTTemperature());
     Serial.println(data);
@@ -87,9 +94,11 @@ void loop() {
     Serial.println(httpCode);    // this return 200 when success
     Serial.println(payload);     // this will get the response
     http.end();
+  } else {
+    Serial.println("Dis-Connected");
+    setupWiFi();
   }
   client.stop();
   Serial.println("Waiting…");
   delay(10000);
-  delay(dht.getMinimumSamplingPeriod());
 }
