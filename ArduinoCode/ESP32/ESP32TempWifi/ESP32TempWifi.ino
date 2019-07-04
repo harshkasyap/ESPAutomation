@@ -8,12 +8,12 @@
 const char* ssid = "CSE-WiFi";    // Enter SSID here
 const char* password = "cse@dept";  //Enter Password here
 
-const char* server = "172.16.28.134";
+const char* server = "172.16.29.217";
 
 WiFiClient client;
 
 /* Set GET link with channel ID */
-const char* _getLink = "http://172.16.28.134:5000/submitData";
+const char* _getLink = "http://172.16.29.217:5000/submitData";
 
 #define DHTPIN 15     // Digital pin connected to the DHT sensor
 
@@ -31,7 +31,7 @@ void setupWiFi() {
   delay(1000);
 
   Serial.println("Connecting to ");
-  Serial.println(ssid);
+  Serial.println(ssid); 
 
   //connect to your local wi-fi network
   WiFi.begin(ssid, password);

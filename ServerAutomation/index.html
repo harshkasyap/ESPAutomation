@@ -7,6 +7,7 @@ window.onload = function () {
 
 var dataResult;
 
+// Replace with own ip address, but will update the code to remove this dependency
 let url="http://"+ location.hostname +":5000/data";
 fetch(url).then(response => response.json())
 .then( (result) => {
@@ -16,7 +17,7 @@ fetch(url).then(response => response.json())
 	theme: "light1", // "light2", "dark1", "dark2"
 	animationEnabled: false, // change to true		
 	title:{
-		text: "Temperature Chart (" + dataResult.time + " - " + dataResult.temp + " C), Cluster name: Chemchamp (Lab: Theoretical chemistry group)"
+		text: "Temperature Chart (" + dataResult.time + " - " + dataResult.temp + " C), Server Room (Computer Dept. 4th Floor, Block-3)"
 	},
 	data: [{
 		// Change type to "bar", "area", "spline", "pie",etc.
