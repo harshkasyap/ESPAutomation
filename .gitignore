@@ -3,3 +3,4 @@ package-lock.json
 record/
 private.key
 id_rsa
+npm-debug.log

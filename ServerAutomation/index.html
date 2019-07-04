@@ -9,6 +9,7 @@ var dataResult;
 
 // Replace with own ip address, but will update the code to remove this dependency
 let url="http://"+ location.hostname +":5000/data";
+
 setInterval(() => {
 	fetch(url).then(response => response.json())
 	.then( (result) => {
