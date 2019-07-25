@@ -1,19 +1,14 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include "DHT.h" 
-
-#define DHTTYPE DHT11   // DHT 11
-#define dht_dpin 0
-DHT dht(dht_dpin, DHTTYPE); 
 
 /*Put your SSID & Password*/
-const char* ssid = "CSE-WiFi";    // Enter SSID here
-const char* password = "cse@dept";  //Enter Password here
+const char* ssid = "DIGISOL";    // Enter SSID here
+const char* password = "";  //Enter Password here
 
-const char* server = "172.16.29.205";
+const char* server = "172.16.33.227";
 
 /* Set GET link with channel ID */
-const char* _getLink = "http://172.16.29.205:5000/submitData";
+const char* _getLink = "http://172.16.33.227:5000/submitData";
 
 WiFiClient client;
 
@@ -40,11 +35,22 @@ void setup() {
 void loop() 
 {
   WiFi.mode(WIFI_STA);
-  //if (client.connect(server,5000))     // "184.106.153.149" or api.thingspeak.com
-  //{
+  if (client.connect(server,5000))     // "184.106.153.149" or api.thingspeak.com
+  {
     Serial.println("Connected");  
     
-    float temperature1 = dht.readTemperature();
+    float temperature1 = 0;
+    double analogValue1 = 0.0;
+    double analogVolts1 = 0.0;
+    analogValue1 = analogRead(A0);
+    Serial.println(String(analogValue1));
+    // convert the analog signal to voltage
+    // the ESP2866 A0 reads between 0 and ~3 volts, producing a corresponding value
+    // between 0 and 1024. The equation below will convert the value to a voltage value.
+    temperature1 = (analogValue1 * 0.322265625);
+    Serial.println(String(analogVolts1));
+    //temperature1 = (analogVolts1) * 100; //converting from 10 mv per degree wit 500 mV offset
+    //to degrees ((voltage - 500mV) times 100)
   
     String data = "temp_sensor=" + String(temperature1);
     Serial.println(data);
@@ -63,7 +69,7 @@ void loop()
     Serial.println(httpCode);    // this return 200 when success
     Serial.println(payload);     // this will get the response
     http.end();
-  //}
+  }
   client.stop();
   Serial.println("Waiting…");
   delay(10000);

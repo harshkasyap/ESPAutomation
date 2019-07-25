@@ -9,25 +9,27 @@ var dataResult;
 
 // Replace with own ip address, but will update the code to remove this dependency
 let url="http://"+ location.hostname +":5000/data";
-fetch(url).then(response => response.json())
-.then( (result) => {
-    dataResult = result;
-}).then(() => {
-	var chart = new CanvasJS.Chart("chartContainer", {
-	theme: "light1", // "light2", "dark1", "dark2"
-	animationEnabled: false, // change to true		
-	title:{
-		text: "Temperature Chart (" + dataResult.time + " - " + dataResult.temp + " C), Server Room (Computer Dept. 4th Floor, Block-3)"
-	},
-	data: [{
-		// Change type to "bar", "area", "spline", "pie",etc.
-		type: "spline",
-		dataPoints: dataResult.arrChart
-	}]
-	});
-	chart.render();
-})
-.catch(error => alert(error));
+setInterval(() => {
+	fetch(url).then(response => response.json())
+	.then( (result) => {
+		dataResult = result;
+	}).then(() => {
+		var chart = new CanvasJS.Chart("chartContainer", {
+		theme: "light1", // "light2", "dark1", "dark2"
+		animationEnabled: false, // change to true		
+		title:{
+			text: "Temperature Chart (" + dataResult.time + " - " + dataResult.temp + " C), Server Room (Computer Dept. 4th Floor, Block-3)"
+		},
+		data: [{
+			// Change type to "bar", "area", "spline", "pie",etc.
+			type: "spline",
+			dataPoints: dataResult.arrChart
+		}]
+		});
+		chart.render();
+	})
+	.catch(error => alert(error));
+}, 1000);
 
 }
 </script>
