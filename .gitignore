@@ -2,3 +2,4 @@ node_modules/
 package-lock.json
 record/
 private.key
+id_rsa

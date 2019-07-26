@@ -1,0 +1,31 @@
+FROM ubuntu:latest
+
+MAINTAINER Harsh Kasyap<harshkasyap@gmail.com>
+
+RUN apt-get update && apt-get install -y npm && apt-get install -y git && apt-get clean
+
+RUN mkdir /root/.ssh/
+ADD id_rsa /root/.ssh/id_rsa
+RUN chmod 700 /root/.ssh/id_rsa
+RUN chown -R root:root /root/.ssh
+RUN touch /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+RUN git clone --single-branch --branch release-cse@iitp git@github.com:harshkasyap/ESPAutomation.git
+ADD private.key /ESPAutomation/ServerAutomation
+RUN apt-get remove -y git && apt-get -y autoremove
+RUN rm -rf /root/.ssh
+RUN npm --prefix ESPAutomation/ServerAutomation i ESPAutomation/ServerAutomation
+CMD npm --prefix ESPAutomation/ServerAutomation start
+
+EXPOSE 5000
+
+# Help and Instructions
+
+# Pre-Requisites
+# You should have ssh-keygen generated and public key addded with your github account
+# keep id_rsa file in current folder having dockerfile
+# keep Nexmo private.key file in current folder having dockerfile
+# docker build -t <image_name:tag> .
+# Run it from where you have kept dockerfile. to build the docker image.
+# docker run -d -p 5000:5000 --rm -it <image_name:tag>
+# Ready to run in local Network as ip_address:5110

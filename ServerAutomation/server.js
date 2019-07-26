@@ -22,7 +22,7 @@ app.get('/data', function (req, res) {
   res.json({arrChart : arrChart, time: getDateTime(), temp:roomTemp});
 });
 
-app.get('/getData', function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
