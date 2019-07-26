@@ -2,9 +2,5 @@ node_modules/
 package-lock.json
 record/
 private.key
-<<<<<<< HEAD
 id_rsa
-npm-debug.log
-=======
-id_rsa
->>>>>>> * Added Dockerfile for fast deployment
+*.log

@@ -25,7 +25,7 @@ RUN apk del openssh-client
 ADD private.key /ESPAutomation/ServerAutomation
 RUN rm -rf /root/.ssh
 RUN npm --prefix ESPAutomation/ServerAutomation i ESPAutomation/ServerAutomation
-CMD npm --prefix ESPAutomation/ServerAutomation start
+CMD npm --prefix ESPAutomation/ServerAutomation start 5000
 
 EXPOSE 5000
 
@@ -45,3 +45,5 @@ EXPOSE 5000
 # Run it from where you have kept dockerfile. to build the docker image.
 # docker run --name esptemp -d -p 5000:5000 -it <image_name:tag>
 # Ready to run in local Network as ip_address:5000
+
+# Change port number if required (at all places in dockerfile)
