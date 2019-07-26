@@ -10,7 +10,7 @@ RUN chmod 700 /root/.ssh/id_rsa
 RUN chown -R root:root /root/.ssh
 RUN touch /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
-RUN git clone --single-branch --branch master git@github.com:harshkasyap/ESPAutomation.git
+RUN git clone --single-branch --branch release-cse@iitp git@github.com:harshkasyap/ESPAutomation.git
 ADD private.key /ESPAutomation/ServerAutomation
 RUN apt-get remove -y git && apt-get -y autoremove
 RUN rm -rf /root/.ssh
