@@ -2,9 +2,9 @@ const Nexmo = require('nexmo');
 
 // Create own nexmo details
 const nexmo = new Nexmo({
-  apiKey: '********',
-  apiSecret: '****************',
-  applicationId: '********-****-****-****-************',
+  apiKey: '274802f8',
+  apiSecret: 'tvWz4zzoLfnGAzXt',
+  applicationId: '7e07cc48-55f7-4b80-ba21-f5ab1fe913e9',
   privateKey: 'private.key',
 });
 

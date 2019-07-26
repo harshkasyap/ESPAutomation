@@ -1,4 +1,14 @@
 {
+  "name": "ESPAutomationConsoleApp",
+  "version": "0.0.0",
+  "description": "TempAutomation",
+  "author": {
+    "name": "Dev",
+    "email": "harshkasyap@gmail.com"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
   "devDependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
