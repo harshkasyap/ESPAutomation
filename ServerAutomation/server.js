@@ -60,6 +60,6 @@ app.post('/submitData', function (req, res) {
   }
 });
 
-var server = app.listen(5000, function () {
+var server = app.listen(Number(process.argv[2]), function () {
   console.log('Node server is running..');
 });
