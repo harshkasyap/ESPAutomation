@@ -2,7 +2,15 @@ FROM ubuntu:latest
 
 MAINTAINER Harsh Kasyap<harshkasyap@gmail.com>
 
+# install dependencies
 RUN apt-get update && apt-get install -y npm && apt-get install -y git && apt-get clean
+
+# set noninteractive installation for installing tzdata
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
+
+# set your timezone
+RUN ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 RUN mkdir /root/.ssh/
 ADD id_rsa /root/.ssh/id_rsa
