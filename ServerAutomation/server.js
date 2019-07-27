@@ -6,6 +6,7 @@ var dateTime = require('node-datetime');
 const { makeACall } = require('./api/makeACall');
 
 var app = express();
+app.use(express.static(__dirname + '/scripts'))
 app.use(bodyParser.urlencoded({ extended: true }));
 
 function getDateTime(){

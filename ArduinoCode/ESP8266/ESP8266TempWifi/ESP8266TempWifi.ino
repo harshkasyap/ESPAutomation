@@ -10,10 +10,10 @@ DHT dht(dht_dpin, DHTTYPE);
 const char* ssid = "CSE-WiFi";    // Enter SSID here
 const char* password = "cse@dept";  //Enter Password here
 
-const char* server = "172.16.29.205";
+const char* server = "172.16.26.43";
 
 /* Set GET link with channel ID */
-const char* _getLink = "http://172.16.29.205:5000/submitData";
+const char* _getLink = "http://172.16.26.43:5000/submitData";
 
 WiFiClient client;
 
