@@ -3,6 +3,8 @@ Automation
 
 * Inspiration and help From [this site](https://www.instructables.com/id/IoT-Temperature-Sensor-With-ESP8266/)
 
+* For Configuring ESP8266 with DHT11 [this site](https://roboindia.com/tutorials/dht11-nodemcu-arduino/)
+
 * ServerAutomation
 	* This code will be running on server machine to receive temperature. It will display on sever ip and call when temperature excedes a limit.
 
