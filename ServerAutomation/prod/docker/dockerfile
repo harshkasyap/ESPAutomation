@@ -13,17 +13,10 @@ RUN apk add tzdata
 RUN ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 RUN apk del tzdata
 
-RUN mkdir /root/.ssh/
-ADD id_rsa /root/.ssh/id_rsa
-RUN chmod 700 /root/.ssh/id_rsa
-RUN chown -R root:root /root/.ssh
-RUN touch /root/.ssh/known_hosts
-RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
-RUN git clone --single-branch --branch release-cse@iitp git@github.com:harshkasyap/ESPAutomation.git
+RUN git clone --single-branch --branch release-cse@iitp https://github.com/harshkasyap/ESPAutomation.git
 RUN ln -fs /NexmoPrivateKey/private.key /ESPAutomation/ServerAutomation/private.key
 RUN apk del git
 RUN apk del openssh-client 
-RUN rm -rf /root/.ssh
 RUN npm --prefix ESPAutomation/ServerAutomation i ESPAutomation/ServerAutomation
 CMD npm --prefix ESPAutomation/ServerAutomation start 5000
 
